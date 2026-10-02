@@ -1,0 +1,373 @@
+/* matnden.github.io */
+
+:root {
+  --reader-size: 34px;
+  --bg: #f7f3ea;
+  --paper: #fffdf8;
+  --ink: #211c15;
+  --muted: #7d7466;
+  --accent: #9a5f24;
+  --accent-soft: #f0e2cd;
+  --ayah: #1c6a4c;
+  --line: #e7dece;
+  --arabic: "Amiri", "Scheherazade New", "Traditional Arabic", serif;
+  --ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--ui);
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- chrome ---------- */
+
+.site-header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+}
+
+/* Contribute / Report Issue buttons on the main page nav */
+.header-actions { display: flex; gap: 0.5rem; }
+
+.header-btn {
+  font-family: var(--ui);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0.3rem 0.65rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header-btn:hover { background: var(--accent-soft); }
+
+.brand { display: inline-flex; align-items: baseline; gap: 0.65rem; }
+.brand:hover { text-decoration: none; }
+
+.brand-name {
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
+
+.brand-tag {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  margin-top: 3rem;
+  padding: 1.25rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ---------- home ---------- */
+
+.home {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 1rem;
+}
+
+.intro h1 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.intro .lede {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 40rem;
+  margin: 0 0 2.5rem;
+}
+
+.books h2 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.book-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 100%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  color: inherit;
+  box-shadow: 0 1px 2px rgba(60, 40, 10, 0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.book-card:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(60, 40, 10, 0.09);
+}
+
+.bc-ar {
+  font-family: var(--arabic);
+  font-size: 1.9rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.bc-en { font-weight: 600; font-size: 1.05rem; }
+.bc-author { color: var(--muted); font-size: 0.9rem; }
+.bc-summary { font-size: 0.92rem; margin-top: 0.35rem; }
+.bc-meta { color: var(--muted); font-size: 0.78rem; margin-top: auto; padding-top: 0.6rem; }
+
+.bc-cta {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ---------- book page ---------- */
+
+.book {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.1rem 2rem;
+}
+
+.book-header { text-align: center; margin-bottom: 1.25rem; }
+
+.book-header .back {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.9rem;
+}
+
+.book-header h1 {
+  font-family: var(--arabic);
+  font-size: 2.6rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 700;
+}
+
+.book-title-en { font-weight: 600; font-size: 1.1rem; margin: 0.35rem 0 0; }
+
+.book-author { margin: 0.4rem 0 0; font-size: 0.95rem; color: var(--muted); }
+.book-author [lang="ar"] { font-family: var(--arabic); font-size: 1.15rem; color: var(--ink); }
+.book-author .sep { margin: 0 0.35rem; }
+
+.book-edition { color: var(--muted); font-size: 0.8rem; margin: 0.5rem 0 0; }
+
+/* toolbar */
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: rgba(255, 253, 248, 0.94);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.45rem 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.font-controls { display: flex; gap: 0.4rem; }
+
+.font-controls button {
+  font-family: var(--ui);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+}
+
+.font-controls button:hover { background: var(--accent-soft); }
+
+.stats { color: var(--muted); font-size: 0.78rem; padding-right: 0.35rem; }
+
+.toolbar-right { display: flex; align-items: center; gap: 0.6rem; }
+
+/* "Contribute" button — opens the book's text.md editor on GitHub */
+.contribute {
+  font-family: var(--ui);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0.3rem 0.65rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.contribute:hover { background: var(--accent-soft); }
+
+/* sections + prose */
+
+.book-body {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 2.2rem 1.8rem;
+  box-shadow: 0 1px 3px rgba(60, 40, 10, 0.05);
+}
+
+.section-title {
+  font-family: var(--arabic);
+  font-size: calc(var(--reader-size) * 0.95);
+  line-height: 1.6;
+  text-align: center;
+  color: var(--ink);
+  margin: 2.4rem 0 1.6rem;
+  font-weight: 700;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  background: var(--accent-soft);
+  margin: 0.7rem auto 0;
+}
+
+.prose {
+  font-family: var(--arabic);
+  font-size: calc(var(--reader-size) * 0.74);
+  line-height: 2.1;
+  margin: 0 0 1.4rem;
+  color: #2c261d;
+}
+
+/* ---------- the interlinear passage ---------- */
+
+.passage {
+  font-family: var(--arabic);
+  font-size: var(--reader-size);
+  direction: rtl;
+  text-align: right;
+  margin: 0 0 1.9rem;
+}
+
+.pnum {
+  display: inline-block;
+  vertical-align: top;
+  font-family: var(--ui);
+  font-size: 0.5em;
+  font-weight: 500;
+  color: var(--muted);
+  padding-top: 1.1em;
+  margin-inline-end: 0.7em;
+  min-width: 1.6em;
+  text-align: center;
+}
+
+/* one column per Arabic word; meaning sits in the reserved slot below */
+.w {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  padding: 0 0.1em;
+}
+
+.wt {
+  display: block;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+/* translation slot — filled when the word carries word|translation */
+.wg {
+  display: block;
+  direction: ltr;
+  font-family: var(--ui);
+  font-size: 0.42em;
+  line-height: 1.35;
+  height: 1.5em;          /* reserve the slot even when empty */
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.ayah { color: var(--ayah); }
+
+/* hemistich gap in poems (// in text.md) — blank between صدر and عجز */
+.hgap {
+  display: inline-block;
+  width: 2.5em;
+}
+
+.ref {
+  display: inline-block;
+  vertical-align: top;
+  font-family: var(--ui);
+  font-size: 0.5em;
+  color: var(--muted);
+  padding-top: 1.2em;
+  margin-inline: 0.3em;
+}
+
+.book-end {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 640px) {
+  :root { --reader-size: 26px; }
+  .brand-tag { display: none; }
+  .book-header h1 { font-size: 2rem; }
+  .intro h1 { font-size: 1.55rem; }
+  .stats { display: none; }
+}
+
+@media (max-width: 400px) {
+  :root { --reader-size: 22px; }
+}
