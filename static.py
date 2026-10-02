@@ -282,6 +282,7 @@ def gen_home(books):
             "seo_description": settings.SITE["description"],
             "page_path": "",
             "og_type": "website",
+            "repo_links": True,
         }
     )
     generate("index.html", join(settings.OUTPUT_FOLDER, "index.html"), **context)

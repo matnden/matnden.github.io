@@ -3,4 +3,10 @@
     <span class="brand-name">{{ settings.SITE.name }}</span>
     <span class="brand-tag">{{ settings.SITE.tagline }}</span>
   </a>
+  {% if repo_links %}
+  <nav class="header-actions">
+    <a class="header-btn" href="{{ settings.REPO_URL }}" target="_blank" rel="noopener">Contribute</a>
+    <a class="header-btn" href="{{ settings.REPO_ISSUES_URL }}" target="_blank" rel="noopener">Report Issue</a>
+  </nav>
+  {% endif %}
 </header>
