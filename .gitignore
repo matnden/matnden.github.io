@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Site build output — regenerate with: python static.py
+docs/*
+# style.css is edited directly in docs/ but still ignored
+!docs/style.css
+!docs/.nojekyll
+!docs/CNAME
+scripts/

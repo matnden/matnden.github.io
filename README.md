@@ -31,7 +31,7 @@ data/books/<slug>/text.md     the Arabic text:
                                 // a wide gap (poem hemistichs)
                                 2 numbered passage
 templates/                    Jinja2 templates (index.html, book.html, sections/)
-style.css                     stylesheet, copied into docs/
+docs/style.css                stylesheet — the source file lives in docs/ itself
 static.py                     generator (jamstack + Jinja2), settings.py = config
 ```
 

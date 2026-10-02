@@ -31,7 +31,6 @@ import html
 import logging
 import os
 import re
-import shutil
 import sys
 from os.path import join
 
@@ -267,10 +266,6 @@ def ensure_output_folder():
     open(join(settings.OUTPUT_FOLDER, ".nojekyll"), "w").close()
 
 
-def copy_assets():
-    shutil.copy("style.css", join(settings.OUTPUT_FOLDER, "style.css"))
-
-
 def gen_home(books):
     context = base_context()
     context.update(
@@ -345,7 +340,6 @@ def main(args):
         gen_home(books)
         for book in books:
             gen_book(book)
-        copy_assets()
         gen_seo(books)
 
         passages = sum(b["passage_count"] for b in books)
@@ -356,7 +350,7 @@ def main(args):
     if len(args) > 1 and args[1] == "--server":
         gen()  # build once before serving
         server = Server()
-        for watch_path in ("data", "templates", "style.css", "static.py", "settings.py"):
+        for watch_path in ("data", "templates", join(settings.OUTPUT_FOLDER, "style.css"), "static.py", "settings.py"):
             server.watch(watch_path, gen, delay=1)
         log.info("serving %s at http://127.0.0.1:5500/", settings.OUTPUT_FOLDER)
         server.serve(root=settings.OUTPUT_FOLDER, port=5500, host="127.0.0.1")
