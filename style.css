@@ -266,7 +266,11 @@ a:hover { text-decoration: underline; }
   color: var(--ink);
   margin: 2.4rem 0 1.6rem;
   font-weight: 700;
+  scroll-margin-top: 4.5rem; /* clear the sticky toolbar on #anchor jumps */
 }
+
+.section-title a { color: inherit; text-decoration: none; }
+.section-title a:hover { opacity: 0.65; }
 
 .section-title::after {
   content: "";
@@ -283,6 +287,16 @@ a:hover { text-decoration: underline; }
   line-height: 2.1;
   margin: 0 0 1.4rem;
   color: #2c261d;
+}
+
+/* standalone --- line in text.md -> horizontal rule */
+.book-body hr {
+  display: block;
+  border: 0;
+  width: 10rem;
+  height: 2px;
+  background: var(--accent-soft);
+  margin: 2.4rem auto;
 }
 
 /* ---------- the interlinear passage ---------- */
