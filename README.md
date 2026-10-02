@@ -55,6 +55,8 @@ That line renders as:
               oneness              ...  partner
 ```
 
+If this is not displayed correctly it's `arabic|english arabic arabic|english`, just add a pipe and add the translation.
+
 Each book page has a **Contribute** button in its toolbar - it opens
 that book's `text.md` in the GitHub editor, so the fastest path is:
 click, edit, commit.
