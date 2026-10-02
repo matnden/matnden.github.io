@@ -34,7 +34,7 @@ import re
 import sys
 from os.path import join
 
-import tomllib
+import toml
 from jamstack.api.template import base_context, generate
 from livereload import Server
 
@@ -221,8 +221,8 @@ def load_books() -> list:
         if not (os.path.isfile(meta_path) and os.path.isfile(text_path)):
             continue
 
-        with open(meta_path, "rb") as f:
-            meta = tomllib.load(f)
+        with open(meta_path, encoding="utf-8") as f:
+            meta = toml.load(f)
 
         slug = meta.get("slug", name)
         if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", slug):
