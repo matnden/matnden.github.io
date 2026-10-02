@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include 'sections/head.html' %}
+</head>
+<body>
+{% include 'sections/navbar.html' %}
+
+<main class="book">
+  <header class="book-header">
+    <a class="back" href="{{ path }}">&larr; All books</a>
+    <h1 lang="ar" dir="rtl">{{ book.title_ar }}</h1>
+    <p class="book-title-en">{{ book.title_en }}</p>
+    <p class="book-author">
+      <span lang="ar" dir="rtl">{{ book.author_ar }}</span>
+      {% if book.author_en %}<span class="sep">&middot;</span> {{ book.author_en }}{% endif %}
+    </p>
+    {% if book.edition %}<p class="book-edition">{{ book.edition }}</p>{% endif %}
+  </header>
+
+  <div class="toolbar">
+    <div class="font-controls" role="group" aria-label="Font size">
+      <button type="button" id="font-minus" title="Smaller text" aria-label="Smaller text">&minus;A</button>
+      <button type="button" id="font-plus" title="Larger text" aria-label="Larger text">A+</button>
+    </div>
+    <div class="stats">{{ book.passage_count }} passages</div>
+  </div>
+
+  <article class="book-body" id="book-body" lang="ar" dir="rtl">
+    {% for sec in book.sections %}
+      {% if sec.title %}<h2 class="section-title">{{ sec.title }}</h2>{% endif %}
+      {% for b in sec.blocks %}
+      {{ b.html }}
+      {% endfor %}
+    {% endfor %}
+  </article>
+
+  <nav class="book-end">
+    <a href="{{ path }}">&larr; All books</a>
+  </nav>
+</main>
+
+{% include 'sections/footer.html' %}
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var KEY_SIZE = 'matnden-size-{{ slug }}';
+
+  function passagePx() {
+    var p = document.querySelector('.passage');
+    return p ? parseFloat(getComputedStyle(p).fontSize) : 34;
+  }
+
+  function setSize(px) {
+    px = Math.max(18, Math.min(64, Math.round(px)));
+    root.style.setProperty('--reader-size', px + 'px');
+    try { localStorage.setItem(KEY_SIZE, px); } catch (e) {}
+  }
+
+  var saved = null;
+  try { saved = parseFloat(localStorage.getItem(KEY_SIZE)); } catch (e) {}
+  if (saved) root.style.setProperty('--reader-size', saved + 'px');
+
+  document.getElementById('font-minus').addEventListener('click', function () {
+    setSize(passagePx() - 3);
+  });
+  document.getElementById('font-plus').addEventListener('click', function () {
+    setSize(passagePx() + 3);
+  });
+})();
+</script>
+</body>
+</html>

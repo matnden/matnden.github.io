@@ -1,0 +1,13 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ seo_title | e }}</title>
+<meta name="description" content="{{ seo_description | e }}">
+<meta property="og:title" content="{{ seo_title | e }}">
+<meta property="og:description" content="{{ seo_description | e }}">
+<meta property="og:type" content="{{ og_type | default('website') }}">
+{% if page_path is defined and page_path %}<meta property="og:url" content="{{ settings.BASE_URL }}/{{ page_path }}">{% endif %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ path }}style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
