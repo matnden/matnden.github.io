@@ -39,6 +39,10 @@ static.py                     generator (jamstack + Jinja2), settings.py = confi
 Add a book: create `data/books/<slug>/` with `meta.toml` + `text.md`,
 run `python static.py` - the front page picks it up automatically.
 
+Each `# section` heading renders as a link to its own anchor
+(`<h2 id="…"><a href="#…">`), so a section URL like
+`/books/tahawi/#عن-الكتاب` can be copied and shared.
+
 ## Contributing translations
 
 Every Arabic word on the page has a translation slot right below it.

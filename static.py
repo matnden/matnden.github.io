@@ -93,12 +93,33 @@ def norm_word(s: str) -> str:
     return re.sub(r"^[^\w]+|[^\w]+$", "", s, flags=re.UNICODE)
 
 
+def slugify(title: str) -> str:
+    """URL fragment from a section title: word chars (Arabic kept), dashes."""
+    s = re.sub(r"[^\w]+", "-", title, flags=re.UNICODE)
+    return re.sub(r"-{2,}", "-", s).strip("-_")
+
+
+def _anchor(title: str, sections) -> str:
+    """Unique, shareable fragment id for a section (``#abc`` style link)."""
+    base = slugify(title) or f"sec-{len(sections) + 1}"
+    anchor = base
+    i = 2
+    while any(s.get("anchor") == anchor for s in sections):
+        anchor = f"{base}-{i}"
+        i += 1
+    return anchor
+
+
 # ---------------------------------------------------------------------------
 # parse data/books/<slug>/text.md
 # ---------------------------------------------------------------------------
 
 def parse_book_text(text: str):
-    """-> list of sections: {"title": str, "blocks": [block, ...]}"""
+    """-> list of sections: {"title": str, "anchor": str, "blocks": [block, ...]}
+
+    ``anchor`` is a unique URL fragment (slugified title) used for the
+    heading's shareable ``#link``.
+    """
     sections = []
     current = None
     prose_buf = []
@@ -117,11 +138,12 @@ def parse_book_text(text: str):
         m = SECTION_RE.match(line)
         if m:
             flush_prose()
-            current = {"title": m.group(1).strip(), "blocks": []}
+            title = m.group(1).strip()
+            current = {"title": title, "blocks": [], "anchor": _anchor(title, sections)}
             sections.append(current)
             continue
         if current is None:
-            current = {"title": "", "blocks": []}
+            current = {"title": "", "blocks": [], "anchor": _anchor("", sections)}
             sections.append(current)
         if HR_RE.match(line):
             flush_prose()

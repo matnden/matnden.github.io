@@ -31,7 +31,7 @@
 
   <article class="book-body" id="book-body" lang="ar" dir="rtl">
     {% for sec in book.sections %}
-      {% if sec.title %}<h2 class="section-title">{{ sec.title }}</h2>{% endif %}
+      {% if sec.title %}<h2 class="section-title" id="{{ sec.anchor }}"><a href="#{{ sec.anchor }}">{{ sec.title }}</a></h2>{% endif %}
       {% for b in sec.blocks %}
       {{ b.html }}
       {% endfor %}
