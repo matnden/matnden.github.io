@@ -285,6 +285,16 @@ a:hover { text-decoration: underline; }
   color: #2c261d;
 }
 
+/* standalone --- line in text.md -> horizontal rule */
+.book-body hr {
+  display: block;
+  border: 0;
+  width: 10rem;
+  height: 2px;
+  background: var(--accent-soft);
+  margin: 2.4rem auto;
+}
+
 /* ---------- the interlinear passage ---------- */
 
 .passage {

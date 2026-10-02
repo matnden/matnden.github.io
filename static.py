@@ -20,6 +20,10 @@ text.md format:
     1 first passage text...
     2 next passage text...
 
+    ---
+    a standalone --- line renders as a horizontal rule (markdown
+    thematic break)
+
 Display model: every passage line is split into words; each word is a
 column with a translation slot directly below it. `word|translation`
 inline in text.md fills the slot (use _ for spaces); words without a
@@ -69,6 +73,7 @@ AR_LETTER_RE = re.compile("[" + _cps((0x0621, 0x064A)) + "]")
 AR_DIGITS = "٠١٢٣٤٥٦٧٨٩"
 
 SECTION_RE = re.compile(r"^#\s+(.*)$")
+HR_RE = re.compile(r"^-{3,}$")
 PASSAGE_RE = re.compile(r"^(\d+)\s+(.*)$")
 REF_RE = re.compile(r"\[[^\]]*\]")
 AYAH_RE = re.compile(r"\}(.+?)\{")
@@ -118,6 +123,10 @@ def parse_book_text(text: str):
         if current is None:
             current = {"title": "", "blocks": []}
             sections.append(current)
+        if HR_RE.match(line):
+            flush_prose()
+            current["blocks"].append({"type": "hr"})
+            continue
         m = PASSAGE_RE.match(line)
         if m:
             flush_prose()
@@ -236,6 +245,8 @@ def load_books() -> list:
             for block in sec["blocks"]:
                 if block["type"] == "prose":
                     block["html"] = prose_html(block["lines"])
+                elif block["type"] == "hr":
+                    block["html"] = "<hr>"
                 else:
                     passage_count += 1
                     block["html"] = passage_html(block["num"], block["text"])

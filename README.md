@@ -30,6 +30,7 @@ data/books/<slug>/text.md     the Arabic text:
                                 word|translation fills a word's slot
                                 // a wide gap (poem hemistichs)
                                 2 numbered passage
+                                --- on its own line: horizontal rule
 templates/                    Jinja2 templates (index.html, book.html, sections/)
 docs/style.css                stylesheet - the source file lives in docs/ itself
 static.py                     generator (jamstack + Jinja2), settings.py = config
