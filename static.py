@@ -303,6 +303,7 @@ def gen_book(book):
             "seo_description": book["summary"],
             "page_path": f"books/{slug}/",
             "og_type": "book",
+            "contribute_url": f"{settings.REPO_EDIT_URL}/data/books/{slug}/text.md",
         }
     )
     generate("book.html", join(out_dir, "index.html"), **context)

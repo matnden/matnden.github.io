@@ -4,6 +4,10 @@ OUTPUT_FOLDER = "docs/"
 BOOKS_DIR = "data/books"
 BASE_URL = "https://matnden.github.io"
 
+# GitHub repo behind the "Contribute" button on book pages — points at the
+# edit form for each book's text.md
+REPO_EDIT_URL = "https://github.com/matnden/matnden.github.io/edit/main"
+
 SITE = {
     "name": "Matnden",
     "tagline": "Read Islamic Classics Easily",

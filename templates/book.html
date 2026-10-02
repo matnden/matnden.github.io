@@ -18,13 +18,16 @@
     {% if book.edition %}<p class="book-edition">{{ book.edition }}</p>{% endif %}
   </header>
 
-  <div class="toolbar">
-    <div class="font-controls" role="group" aria-label="Font size">
-      <button type="button" id="font-minus" title="Smaller text" aria-label="Smaller text">&minus;A</button>
-      <button type="button" id="font-plus" title="Larger text" aria-label="Larger text">A+</button>
+    <div class="toolbar">
+      <div class="font-controls" role="group" aria-label="Font size">
+        <button type="button" id="font-minus" title="Smaller text" aria-label="Smaller text">&minus;A</button>
+        <button type="button" id="font-plus" title="Larger text" aria-label="Larger text">A+</button>
+      </div>
+      <div class="toolbar-right">
+        <div class="stats">{{ book.passage_count }} passages</div>
+        <a class="contribute" href="{{ contribute_url }}" target="_blank" rel="noopener">Contribute</a>
+      </div>
     </div>
-    <div class="stats">{{ book.passage_count }} passages</div>
-  </div>
 
   <article class="book-body" id="book-body" lang="ar" dir="rtl">
     {% for sec in book.sections %}
